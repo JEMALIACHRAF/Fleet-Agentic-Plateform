@@ -18,11 +18,7 @@ metrics endpoint lives on the API. Traces are PUSH-based (the app exports spans 
 Langfuse over OTLP) and so don't need an endpoint. Two signals, two transport
 models, by design.
 
-INTERVIEW ANCHOR
-----------------
-Q: "Where do Grafana's numbers come from?"  ->  "Prometheus scrapes GET /metrics on
-   this API. The per-node counters/histograms are emitted inside traced_node; this
-   endpoint just renders them."
+
 """
 from __future__ import annotations
 
