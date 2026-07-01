@@ -1,0 +1,32 @@
+# Metrics stack ONLY: Prometheus + Grafana for the FastAPI /metrics endpoint.
+#
+# Langfuse is NOT here on purpose: since v3 it needs 6 containers
+# (web, worker, postgres, clickhouse, redis, minio) and ~8 GB RAM, so it runs as
+# its own stack. Easiest path = Langfuse Cloud free tier (no Docker). Self-host
+# path = clone github.com/langfuse/langfuse and `docker compose up`. See README.
+#
+# Usage:
+#   1) run the app:   uvicorn fleet.api.main:app --port 8000   (exposes /metrics)
+#   2) start this:    docker compose up -d
+#   3) Grafana:       http://localhost:3001   (admin / admin)  dashboard auto-loaded
+#   4) Prometheus:    http://localhost:9091
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9099:9090"          # host 9091 to avoid clashing with Langfuse's minio (9090)
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"   # lets Prometheus reach uvicorn on the host
+
+  grafana:
+    image: grafana/grafana:latest
+    depends_on: [prometheus]
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro

@@ -1,0 +1,9 @@
+# Install on top of requirements.txt to run against real Gemini/OpenAI + Langfuse.
+google-adk>=2.0
+google-genai>=1.0
+litellm>=1.40
+openai>=1.30
+google-cloud-bigquery>=3.0
+langfuse>=3.0
+openinference-instrumentation-google-adk>=0.1.10
+python-dotenv>=1.0

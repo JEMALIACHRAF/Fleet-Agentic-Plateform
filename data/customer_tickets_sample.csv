@@ -1,0 +1,5 @@
+ticket_id,customer_tier,subject,body,created_at
+TICKET-042,enterprise,Double charged this month,"We were billed twice for our March fleet subscription. This is the second time. Please refund and explain, we are considering cancelling.",2026-03-12T09:20:00
+TICKET-043,standard,GPS not updating,"The live map for vehicle V-12 has been frozen for two days. Support told me to restart but it did not help.",2026-03-12T11:05:00
+TICKET-044,enterprise,Cancel our account,"We want to terminate our contract effective next month. The platform is too slow and we found an alternative.",2026-03-13T08:00:00
+TICKET-045,standard,How to export reports,"Hi, where can I download a monthly mileage report as a PDF? Thanks!",2026-03-13T14:42:00
