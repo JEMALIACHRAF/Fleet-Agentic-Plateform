@@ -18,19 +18,9 @@ WHAT LiteLLM Router GIVES US (for free, battle-tested):
   - one call site      : router.complete("fast", messages) — caller never knows
                          which provider answered.
 
-TESTING WITHOUT KEYS — "RUNS LIKE PROD"
----------------------------------------
-We do NOT use a fake MockProvider object. Instead we use LiteLLM's `mock_response`,
-which runs the EXACT SAME router code path (retries, fallbacks, parsing) but
-short-circuits the network. So tests exercise production code, not a stand-in.
 
-INTERVIEW ANCHORS
------------------
-Q: "What happens on a Gemini 429?"  ->  "LiteLLM retries (num_retries), then falls
-   back to the next deployment / the 'deep' group / OpenAI. The pipeline doesn't die."
-Q: "Why not write your own router?"  ->  "Because retry/fallback/load-balancing are
-   commodity infra. Writing them yourself is where bugs hide. LiteLLM is the
-   enterprise standard, and ADK uses LiteLLM under the hood too."
+
+
 """
 from __future__ import annotations
 
